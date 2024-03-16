@@ -3,6 +3,10 @@
 2. Download ZIP & Extract
 3. Go to file - **net7.0-windows/**
 4. Click on **OverlayWPF.exe**
+__________________________________________________________________________________________________
+App Shortcut:
+1. Close App - **Q**
+__________________________________________________________________________________________________
 
 Can manage the Color of text in your .txt file with add - **\r** or **\g** or **\y** or **\b**.
 
