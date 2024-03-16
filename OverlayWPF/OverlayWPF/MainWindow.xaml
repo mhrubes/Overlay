@@ -13,6 +13,10 @@
         <SolidColorBrush Color="#FF363131" Opacity="{Binding ElementName=slider, Path=Value}"/>
     </Window.Background>
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

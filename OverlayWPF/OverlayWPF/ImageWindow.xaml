@@ -5,14 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OverlayWPF"
         mc:Ignorable="d"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Title="ImageWindow" Height="35" MinWidth="350" Width="350"
+        Title="ImageWindow" MinHeight="35" Height="35" MinWidth="350" Width="350"
         AllowsTransparency="True" WindowStyle="None"
         MouseDown="Window_MouseDown" PreviewKeyDown="Window_PreviewKeyDown">
 
     <Window.Background>
         <SolidColorBrush Color="#FF363131" Opacity="{Binding ElementName=slider, Path=Value}"/>
     </Window.Background>
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome ResizeBorderThickness="6" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -60,6 +63,9 @@
                     Opacity="{Binding ElementName=slider, Path=Value}"/>
         </Grid>
 
-        <Image Grid.Row="1" Name="imageControl" Margin="0" Opacity="{Binding ElementName=slider, Path=Value}"/>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                      Opacity="{Binding ElementName=slider, Path=Value}">
+            <Image Grid.Row="1" Name="imageControl" Margin="0" Height="auto" Width="auto" Opacity="{Binding ElementName=slider, Path=Value}"/>
+        </ScrollViewer>
     </Grid>
 </Window>

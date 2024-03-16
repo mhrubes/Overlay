@@ -41,6 +41,8 @@ namespace OverlayWPF
                 {
                     PathName.Text = FilePath;
                     ShowFileContent(FilePath);
+
+                    this.Height = 450;
                 }
                 else
                 {
@@ -52,7 +54,32 @@ namespace OverlayWPF
                 MessageBox.Show(error.ToString());
             }
 
+            Loaded += MainWindow_Loaded;
+
             this.Topmost = true;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Nastavit Timer
+            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
+            dispatcherTimer.Start();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Q))
+                this.Close();
+
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.H))
+            {
+                if (this.Visibility == Visibility.Visible)
+                    this.Visibility = Visibility.Hidden;
+                else
+                    this.Visibility = Visibility.Visible;
+            }
         }
 
         private void ShowFileContent(string filePath)
@@ -204,8 +231,7 @@ namespace OverlayWPF
                 string selectedFileName = openFileDialog.FileName;
                 try
                 {
-                    this.MinHeight = 350;
-                    this.Height = 550;
+                    this.Height = 450;
 
                     DatabaseManager dbManager = new DatabaseManager();
                     dbManager.InsertFilePath(selectedFileName);
