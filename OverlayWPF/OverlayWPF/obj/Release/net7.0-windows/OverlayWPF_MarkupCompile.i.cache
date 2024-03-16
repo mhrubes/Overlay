@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET7_0;NETCOREAPP
 C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\App.xaml
-11407045341
+2-1415006386
 
-62100858339
+7-1706652870
 203227845490
-MainWindow.xaml;
+ImageWindow.xaml;MainWindow.xaml;
 
-False
+True
 

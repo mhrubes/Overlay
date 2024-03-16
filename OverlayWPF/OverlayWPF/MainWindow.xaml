@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OverlayWPF"
         mc:Ignorable="d"
-        Title="Overlay" MinHeight="350" Height="550" MinWidth="250" Width="350"
+        Title="Overlay" Height="35" MinWidth="250" Width="350"
         AllowsTransparency="True" WindowStyle="None"
         MouseDown="Window_MouseDown" PreviewKeyDown="Window_PreviewKeyDown">
 
@@ -20,19 +20,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Height="auto">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Slider x:Name="slider" Width="100" Margin="10" Value="87.5" Minimum="0.75" Maximum="1"/>
 
-            <Button Grid.Column="1" Content="Vybrat soubor" Click="File_Button_Click" Width="100" Height="20" 
-                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+            <Button Grid.Column="1" Content="Image Window" Click="Change_Window_Click" Width="100" Height="26" 
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
+                    Opacity="{Binding ElementName=slider, Path=Value}"/>
+
+            <Button Grid.Column="2" Content="Select File" Click="File_Button_Click" Width="100" Height="26" 
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
+                    Opacity="{Binding ElementName=slider, Path=Value}"/>
         </Grid>
 
-        <TextBlock Grid.Row="1" Name="PathName" Foreground="White" Text="File Path" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0"></TextBlock>
+        <TextBlock Grid.Row="1" Name="PathName" Foreground="White" Text="File Path" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0"
+                   Opacity="{Binding ElementName=slider, Path=Value}"></TextBlock>
 
         <Border Grid.Row="2" BorderThickness="0" BorderBrush="Transparent" Margin="5">
             <ScrollViewer MaxHeight="450"  

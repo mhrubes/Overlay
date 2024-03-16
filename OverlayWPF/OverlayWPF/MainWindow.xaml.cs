@@ -53,7 +53,6 @@ namespace OverlayWPF
             }
 
             this.Topmost = true;
-            //slider.ValueChanged += Slider_ValueChanged;
         }
 
         private void ShowFileContent(string filePath)
@@ -205,6 +204,9 @@ namespace OverlayWPF
                 string selectedFileName = openFileDialog.FileName;
                 try
                 {
+                    this.MinHeight = 350;
+                    this.Height = 550;
+
                     DatabaseManager dbManager = new DatabaseManager();
                     dbManager.InsertFilePath(selectedFileName);
 
@@ -228,6 +230,14 @@ namespace OverlayWPF
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void Change_Window_Click(object sender, RoutedEventArgs e)
+        {
+            ImageWindow imageWindow = new ImageWindow();
+            imageWindow.Show();
+
+            this.Close();
         }
     }
 }
