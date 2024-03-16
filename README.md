@@ -11,7 +11,7 @@ ________________________________________________________________________________
 Can manage the Color of text in your .txt file with add - **\r** or **\g** or **\y** or **\b**.
 
 **Example**: <br />
-Hello \rworld\r how are \gyou\g?
+Hello \rworld\r how are \gyou\g? <br />
 Today is a \bblue\b sky and \yyellow\y Sun. 
 
   Good Luck
