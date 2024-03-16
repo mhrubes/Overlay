@@ -34,7 +34,7 @@
 
         <TextBlock Grid.Row="1" Name="PathName" Foreground="White" Text="File Path" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 0 5 0"></TextBlock>
 
-        <Border Grid.Row="2" BorderThickness="0" BorderBrush="Transparent" Margin="0 5 0 0">
+        <Border Grid.Row="2" BorderThickness="0" BorderBrush="Transparent" Margin="5">
             <ScrollViewer MaxHeight="450"  
               Width="auto"
               HorizontalScrollBarVisibility="Disabled"

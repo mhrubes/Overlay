@@ -70,12 +70,12 @@ namespace OverlayWPF
             this.Topmost = true;
             //slider.ValueChanged += Slider_ValueChanged;
         }
+
         private void ShowFileContent(string filePath)
         {
             try
             {
-                string fileContent = File.ReadAllText(filePath, Encoding.UTF8);
-                //Clipboard.SetText(fileContent);
+                string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
                 // Clear existing content
                 textblockText.Inlines.Clear();
@@ -83,115 +83,124 @@ namespace OverlayWPF
                 // Define default color
                 Brush defaultColor = Brushes.White;
 
-                // Process each character in the file content
-                for (int i = 0; i < fileContent.Length; i++)
+                // Process each line in the file content
+                foreach (string line in lines)
                 {
-                    char currentChar = fileContent[i];
-
-                    // Check for special markers
-                    if (currentChar == '\\')
+                    if (!string.IsNullOrWhiteSpace(line))
                     {
-                        if (i + 1 < fileContent.Length)
+                        // Process each character in the line
+                        for (int i = 0; i < line.Length; i++)
                         {
-                            char nextChar = fileContent[i + 1];
+                            char currentChar = line[i];
 
-                            // Handle color markers
-                            if (nextChar == 'r')
+                            // Check for special markers
+                            if (currentChar == '\\')
                             {
-                                // Set color to orangeRed until the next occurrence of '\r'
-                                defaultColor = Brushes.OrangeRed;
-
-                                // Find the index of the next occurrence of '\r'
-                                int endIndex = fileContent.IndexOf("\\r", i + 2);
-
-                                // If '\r' is found, process text until the end index
-                                if (endIndex != -1)
+                                if (i + 1 < line.Length)
                                 {
-                                    for (int j = i + 2; j < endIndex; j++)
+                                    char nextChar = line[i + 1];
+
+                                    // Handle color markers
+                                    if (nextChar == 'r')
                                     {
-                                        Run run = new Run(fileContent[j].ToString());
-                                        run.Foreground = defaultColor;
-                                        textblockText.Inlines.Add(run);
+                                        // Set color to orangeRed until the next occurrence of '\r'
+                                        defaultColor = Brushes.OrangeRed;
+
+                                        // Find the index of the next occurrence of '\r'
+                                        int endIndex = line.IndexOf("\\r", i + 2);
+
+                                        // If '\r' is found, process text until the end index
+                                        if (endIndex != -1)
+                                        {
+                                            for (int j = i + 2; j < endIndex; j++)
+                                            {
+                                                Run run = new Run(line[j].ToString());
+                                                run.Foreground = defaultColor;
+                                                textblockText.Inlines.Add(run);
+                                            }
+                                            i = endIndex + 1; // Skip the '\r' and continue processing
+                                            defaultColor = Brushes.White; // Reset color to default
+                                            continue;
+                                        }
                                     }
-                                    i = endIndex + 1; // Skip the '\r' and continue processing
-                                    defaultColor = Brushes.White; // Reset color to default
-                                    continue;
+                                    else if (nextChar == 'g')
+                                    {
+                                        // Set color to green until the next occurrence of '\g'
+                                        defaultColor = Brushes.SpringGreen;
+
+                                        // Find the index of the next occurrence of '\g'
+                                        int endIndex = line.IndexOf("\\g", i + 2);
+
+                                        // If '\g' is found, process text until the end index
+                                        if (endIndex != -1)
+                                        {
+                                            for (int j = i + 2; j < endIndex; j++)
+                                            {
+                                                Run run = new Run(line[j].ToString());
+                                                run.Foreground = defaultColor;
+                                                textblockText.Inlines.Add(run);
+                                            }
+                                            i = endIndex + 1; // Skip the '\g' and continue processing
+                                            defaultColor = Brushes.White; // Reset color to default
+                                            continue;
+                                        }
+                                    }
+                                    else if (nextChar == 'b')
+                                    {
+                                        // Set color to skyblue until the next occurrence of '\b'
+                                        defaultColor = Brushes.SkyBlue;
+
+                                        // Find the index of the next occurrence of '\b'
+                                        int endIndex = line.IndexOf("\\b", i + 2);
+
+                                        // If '\b' is found, process text until the end index
+                                        if (endIndex != -1)
+                                        {
+                                            for (int j = i + 2; j < endIndex; j++)
+                                            {
+                                                Run run = new Run(line[j].ToString());
+                                                run.Foreground = defaultColor;
+                                                textblockText.Inlines.Add(run);
+                                            }
+                                            i = endIndex + 1; // Skip the '\b' and continue processing
+                                            defaultColor = Brushes.White; // Reset color to default
+                                            continue;
+                                        }
+                                    }
+                                    else if (nextChar == 'y')
+                                    {
+                                        // Set color to yellow until the next occurrence of '\y'
+                                        defaultColor = Brushes.Yellow;
+
+                                        // Find the index of the next occurrence of '\y'
+                                        int endIndex = line.IndexOf("\\y", i + 2);
+
+                                        // If '\y' is found, process text until the end index
+                                        if (endIndex != -1)
+                                        {
+                                            for (int j = i + 2; j < endIndex; j++)
+                                            {
+                                                Run run = new Run(line[j].ToString());
+                                                run.Foreground = defaultColor;
+                                                textblockText.Inlines.Add(run);
+                                            }
+                                            i = endIndex + 1; // Skip the '\y' and continue processing
+                                            defaultColor = Brushes.White; // Reset color to default
+                                            continue;
+                                        }
+                                    }
                                 }
                             }
-                            else if (nextChar == 'g')
-                            {
-                                // Set color to green until the next occurrence of '\g'
-                                defaultColor = Brushes.SpringGreen;
 
-                                // Find the index of the next occurrence of '\g'
-                                int endIndex = fileContent.IndexOf("\\g", i + 2);
-
-                                // If '\g' is found, process text until the end index
-                                if (endIndex != -1)
-                                {
-                                    for (int j = i + 2; j < endIndex; j++)
-                                    {
-                                        Run run = new Run(fileContent[j].ToString());
-                                        run.Foreground = defaultColor;
-                                        textblockText.Inlines.Add(run);
-                                    }
-                                    i = endIndex + 1; // Skip the '\g' and continue processing
-                                    defaultColor = Brushes.White; // Reset color to default
-                                    continue;
-                                }
-                            }
-                            else if (nextChar == 'b')
-                            {
-                                // Set color to skyblue until the next occurrence of '\b'
-                                defaultColor = Brushes.SkyBlue;
-
-                                // Find the index of the next occurrence of '\b'
-                                int endIndex = fileContent.IndexOf("\\b", i + 2);
-
-                                // If '\b' is found, process text until the end index
-                                if (endIndex != -1)
-                                {
-                                    for (int j = i + 2; j < endIndex; j++)
-                                    {
-                                        Run run = new Run(fileContent[j].ToString());
-                                        run.Foreground = defaultColor;
-                                        textblockText.Inlines.Add(run);
-                                    }
-                                    i = endIndex + 1; // Skip the '\b' and continue processing
-                                    defaultColor = Brushes.White; // Reset color to default
-                                    continue;
-                                }
-                            }
-                            else if (nextChar == 'y')
-                            {
-                                // Set color to yellow until the next occurrence of '\y'
-                                defaultColor = Brushes.Yellow;
-
-                                // Find the index of the next occurrence of '\y'
-                                int endIndex = fileContent.IndexOf("\\y", i + 2);
-
-                                // If '\y' is found, process text until the end index
-                                if (endIndex != -1)
-                                {
-                                    for (int j = i + 2; j < endIndex; j++)
-                                    {
-                                        Run run = new Run(fileContent[j].ToString());
-                                        run.Foreground = defaultColor;
-                                        textblockText.Inlines.Add(run);
-                                    }
-                                    i = endIndex + 1; // Skip the '\y' and continue processing
-                                    defaultColor = Brushes.White; // Reset color to default
-                                    continue;
-                                }
-                            }
-
+                            // Create a run for the current character with the determined color
+                            Run defaultRun = new Run(currentChar.ToString());
+                            defaultRun.Foreground = defaultColor;
+                            textblockText.Inlines.Add(defaultRun);
                         }
                     }
 
-                    // Create a run for the current character with the determined color
-                    Run defaultRun = new Run(currentChar.ToString());
-                    defaultRun.Foreground = defaultColor;
-                    textblockText.Inlines.Add(defaultRun);
+                    // Add a line break after each processed line
+                    textblockText.Inlines.Add(new LineBreak());
                 }
             }
             catch (Exception ex)
