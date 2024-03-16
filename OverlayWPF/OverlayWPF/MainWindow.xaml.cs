@@ -1,19 +1,10 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using System.Data.SQLite;
 
@@ -24,9 +15,6 @@ namespace OverlayWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool isDragging;
-        private Point lastMousePosition;
-
         public SQLiteConnection connection;
         public string FilePath;
 
@@ -36,12 +24,9 @@ namespace OverlayWPF
 
             KeyGesture quitKeyGesture = new KeyGesture(Key.Q, ModifierKeys.Alt);
 
-            // Vytvoření vazby pro klávesovou kombinaci
             InputBinding quitInputBinding = new InputBinding(ApplicationCommands.Close, quitKeyGesture);
 
-            // Přidání vazby do kolekce vazeb okna
             this.InputBindings.Add(quitInputBinding);
-
 
             connection = new SQLiteConnection("Data Source=MyDatabase.sqlite;Version=3;");
             try
