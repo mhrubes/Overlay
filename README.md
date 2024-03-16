@@ -1,7 +1,7 @@
 **How to USE it**:
 1. click on <> Code (green button)
 2. Download ZIP & Extract
-3. Go to file - **net7.0-windows/**
+3. Go to file - **Release/net7.0-windows/**
 4. Click on **OverlayWPF.exe**
 __________________________________________________________________________________________________
 App Shortcut:
