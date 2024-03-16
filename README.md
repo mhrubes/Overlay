@@ -14,4 +14,4 @@ Example: <br />
 Hello \rworld\r how are \gyou\g ?
 
 The result will be: <br />
-![image](https://github.com/mhrubes/Overlay/assets/54173124/9e40621f-075d-4201-8b02-18b5f02f0674)
+![image](https://github.com/mhrubes/Overlay/assets/54173124/beb9f9d4-d867-4989-98b6-32eca16b34c0)
