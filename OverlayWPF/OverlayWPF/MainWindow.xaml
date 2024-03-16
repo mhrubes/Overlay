@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Slider x:Name="slider" Width="100" Margin="10" Value="87.5" Minimum="0.75" Maximum="1"/>
+            <Slider x:Name="slider" Width="100" Margin="10" Value="0.75" Minimum="0.5" Maximum="1"/>
 
             <Button Grid.Column="1" Content="Image Window" Click="Change_Window_Click" Width="100" Height="26" 
                     VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"

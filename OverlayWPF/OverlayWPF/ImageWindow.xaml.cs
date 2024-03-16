@@ -22,6 +22,8 @@ namespace OverlayWPF
     /// </summary>
     public partial class ImageWindow : Window
     {
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
         public ImageWindow()
         {
             InitializeComponent();
@@ -36,8 +38,6 @@ namespace OverlayWPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Nastavit Timer
-            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
             dispatcherTimer.Start();
@@ -151,6 +151,8 @@ namespace OverlayWPF
 
         private void Change_Window_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
+
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
 

@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Slider x:Name="slider" Grid.Column="0" Width="40" Margin="5" Value="1" Minimum="0.45" Maximum="1" 
+            <Slider x:Name="slider" Grid.Column="0" Width="40" Margin="5" Value="1" Minimum="0.2" Maximum="1" 
                     VerticalAlignment="Center"/>
 
             <Label Grid.Column="1" Content="Width" Foreground="White" FontSize="7"
@@ -65,7 +65,7 @@
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                       Opacity="{Binding ElementName=slider, Path=Value}">
-            <Image Grid.Row="1" Name="imageControl" Margin="0" Height="auto" Width="auto" Opacity="{Binding ElementName=slider, Path=Value}"/>
+            <Image Grid.Row="1" Name="imageControl" Margin="0" Height="auto" Width="auto" Opacity="1"/>
         </ScrollViewer>
     </Grid>
 </Window>

@@ -18,6 +18,8 @@ namespace OverlayWPF
         public SQLiteConnection connection;
         public string FilePath;
 
+        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -61,8 +63,6 @@ namespace OverlayWPF
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Nastavit Timer
-            System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
             dispatcherTimer.Start();
@@ -260,6 +260,8 @@ namespace OverlayWPF
 
         private void Change_Window_Click(object sender, RoutedEventArgs e)
         {
+            dispatcherTimer.Stop();
+
             ImageWindow imageWindow = new ImageWindow();
             imageWindow.Show();
 
