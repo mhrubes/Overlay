@@ -19,7 +19,7 @@ Today is a \bblue\b sky and \yyellow\y Sun.
 The result will be: <br />
 
 **Low Opacity**: <br />
-![image](https://github.com/mhrubes/Overlay/assets/54173124/beb9f9d4-d867-4989-98b6-32eca16b34c0)
+![image](https://github.com/mhrubes/Overlay/assets/54173124/ad29266f-1241-4946-ac67-3985497e7e85)
 <br />
 **Full Opacity**: <br />
-![image](https://github.com/mhrubes/Overlay/assets/54173124/5a0aba64-e297-4968-913d-b928f6913863)
+![image](https://github.com/mhrubes/Overlay/assets/54173124/2e10dc50-c87b-44f0-bd8d-79f013cdb80d)
