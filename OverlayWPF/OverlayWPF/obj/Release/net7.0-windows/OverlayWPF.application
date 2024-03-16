@@ -7,7 +7,7 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Application Files\OverlayWPF_1_0_0_1\OverlayWPF.dll.manifest" size="10479">
+    <dependentAssembly dependencyType="install" codebase="OverlayWPF.dll.manifest" size="10479">
       <assemblyIdentity name="OverlayWPF.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
