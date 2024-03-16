@@ -1,3 +1,6 @@
+An application that allows you to load a text file or image and then adjust the opacity.
+__________________________________________________________________________________________________
+
 **How to USE it**:
 1. click on <> Code (green button)
 2. Download ZIP & Extract
@@ -5,7 +8,9 @@
 4. Click on **OverlayWPF.exe**
 __________________________________________________________________________________________________
 **App Shortcut**:
-1. Close App - **Q**
+1. Close App when **active** - **Q**
+2. Close App when **not active** - **Alt + Q**
+3. Hide / Show App - **Alt + H**
 __________________________________________________________________________________________________
 
 Can manage the Color of text in your .txt file with add - **\r** or **\g** or **\y** or **\b**.
