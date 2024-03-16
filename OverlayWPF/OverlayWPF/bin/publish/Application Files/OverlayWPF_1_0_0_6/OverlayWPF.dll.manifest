@@ -80,22 +80,22 @@
       <dsig:DigestValue>6/8AKA/DiqmgvSJsR623USSMUAfAj0fzZQcPk06EaSA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="OverlayWPF.dll" size="20480">
+  <file name="OverlayWPF.dll" size="19968">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>IktZw0whmUEYZCDdpwbfOqB5GzqDWCbvhIGwqpJvS+0=</dsig:DigestValue>
+      <dsig:DigestValue>IooMC/KstIOJO/51J8bj2+I04ej1rDl9z1eQaomBetc=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="OverlayWPF.exe" size="154624">
+  <file name="OverlayWPF.exe" size="154112">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NcMn/4wP9wzy3AaVtix4pwGRRWvtLH+lZ+F+/HKROco=</dsig:DigestValue>
+      <dsig:DigestValue>/p7Vvu91H4doinqm+5w6pSpVkOUUfj2ekFNdX4uUgNA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="OverlayWPF.runtimeconfig.json" size="372">
