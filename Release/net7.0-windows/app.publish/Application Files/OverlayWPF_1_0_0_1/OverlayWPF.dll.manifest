@@ -86,7 +86,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>vxpMl6PpIxGJ2Wmo6BGUbhw5fveMoWbmdRi8t2tkae8=</dsig:DigestValue>
+      <dsig:DigestValue>ZgsNR1E3l3V6vWWckac+U6EQ0WFP1GTQ2Xoob8XCDU4=</dsig:DigestValue>
     </hash>
   </file>
   <file name="OverlayWPF.exe" size="154112">
