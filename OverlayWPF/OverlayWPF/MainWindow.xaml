@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OverlayWPF"
         mc:Ignorable="d"
-        Title="Overlay" MinHeight="200" Height="500" MinWidth="200" Width="350"
-                AllowsTransparency="True" WindowStyle="None"
-        MouseDown="Window_MouseDown">
+        Title="Overlay" MinHeight="350" Height="550" MinWidth="250" Width="350"
+        AllowsTransparency="True" WindowStyle="None"
+        MouseDown="Window_MouseDown" PreviewKeyDown="Window_PreviewKeyDown">
 
     <Window.Background>
         <SolidColorBrush Color="#FF363131" Opacity="{Binding ElementName=slider, Path=Value}"/>

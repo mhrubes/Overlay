@@ -34,6 +34,15 @@ namespace OverlayWPF
         {
             InitializeComponent();
 
+            KeyGesture quitKeyGesture = new KeyGesture(Key.Q, ModifierKeys.Alt);
+
+            // Vytvoření vazby pro klávesovou kombinaci
+            InputBinding quitInputBinding = new InputBinding(ApplicationCommands.Close, quitKeyGesture);
+
+            // Přidání vazby do kolekce vazeb okna
+            this.InputBindings.Add(quitInputBinding);
+
+
             connection = new SQLiteConnection("Data Source=MyDatabase.sqlite;Version=3;");
             try
             {
@@ -59,7 +68,7 @@ namespace OverlayWPF
             }
 
             this.Topmost = true;
-            slider.ValueChanged += Slider_ValueChanged;
+            //slider.ValueChanged += Slider_ValueChanged;
         }
         private void ShowFileContent(string filePath)
         {
@@ -89,8 +98,8 @@ namespace OverlayWPF
                             // Handle color markers
                             if (nextChar == 'r')
                             {
-                                // Set color to red until the next occurrence of '\r'
-                                defaultColor = Brushes.Red;
+                                // Set color to orangeRed until the next occurrence of '\r'
+                                defaultColor = Brushes.OrangeRed;
 
                                 // Find the index of the next occurrence of '\r'
                                 int endIndex = fileContent.IndexOf("\\r", i + 2);
@@ -112,7 +121,7 @@ namespace OverlayWPF
                             else if (nextChar == 'g')
                             {
                                 // Set color to green until the next occurrence of '\g'
-                                defaultColor = Brushes.Green;
+                                defaultColor = Brushes.SpringGreen;
 
                                 // Find the index of the next occurrence of '\g'
                                 int endIndex = fileContent.IndexOf("\\g", i + 2);
@@ -131,6 +140,51 @@ namespace OverlayWPF
                                     continue;
                                 }
                             }
+                            else if (nextChar == 'b')
+                            {
+                                // Set color to skyblue until the next occurrence of '\b'
+                                defaultColor = Brushes.SkyBlue;
+
+                                // Find the index of the next occurrence of '\b'
+                                int endIndex = fileContent.IndexOf("\\b", i + 2);
+
+                                // If '\b' is found, process text until the end index
+                                if (endIndex != -1)
+                                {
+                                    for (int j = i + 2; j < endIndex; j++)
+                                    {
+                                        Run run = new Run(fileContent[j].ToString());
+                                        run.Foreground = defaultColor;
+                                        textblockText.Inlines.Add(run);
+                                    }
+                                    i = endIndex + 1; // Skip the '\b' and continue processing
+                                    defaultColor = Brushes.White; // Reset color to default
+                                    continue;
+                                }
+                            }
+                            else if (nextChar == 'y')
+                            {
+                                // Set color to yellow until the next occurrence of '\y'
+                                defaultColor = Brushes.Yellow;
+
+                                // Find the index of the next occurrence of '\y'
+                                int endIndex = fileContent.IndexOf("\\y", i + 2);
+
+                                // If '\y' is found, process text until the end index
+                                if (endIndex != -1)
+                                {
+                                    for (int j = i + 2; j < endIndex; j++)
+                                    {
+                                        Run run = new Run(fileContent[j].ToString());
+                                        run.Foreground = defaultColor;
+                                        textblockText.Inlines.Add(run);
+                                    }
+                                    i = endIndex + 1; // Skip the '\y' and continue processing
+                                    defaultColor = Brushes.White; // Reset color to default
+                                    continue;
+                                }
+                            }
+
                         }
                     }
 
@@ -144,11 +198,6 @@ namespace OverlayWPF
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
-        }
-
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
         }
 
         private void File_Button_Click(object sender, RoutedEventArgs e)
@@ -175,6 +224,11 @@ namespace OverlayWPF
             }
         }
 
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Q)
+                Application.Current.Shutdown();
+        }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

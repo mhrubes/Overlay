@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NcYafu0K/cEDIhXXFEdGKR5fb2lb/MqCK8BSZ6YFbjpcfw81nhPkP+g3y7+VBc85f/dLPGb+gH6qw1Yvce1ZQw==",
+  "dgSpecHash": "PVeJz7Zpdi+nmLljfwaahujHePA0ahNn5nA95z/4uD4mQp8j6rJpKbr/2st9B0rPQTSli90jYGRQNK9om63FqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\User\\source\\repos\\OverlayWPF\\OverlayWPF\\OverlayWPF.csproj",
+  "projectFilePath": "C:\\Users\\User\\Desktop\\Overlay\\OverlayWPF\\OverlayWPF\\OverlayWPF.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
