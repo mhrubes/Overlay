@@ -2,7 +2,7 @@ Can manage the Color of text in your .txt file with - \r or \g
 
 Example:
 
-Hello **\r**world**\r** how are **\g**you**\g** ?
+Hello \rworld\r how are \gyou\g ?
 
 The resul will be:
 
