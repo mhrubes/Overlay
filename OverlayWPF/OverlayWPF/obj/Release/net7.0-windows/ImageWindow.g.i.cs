@@ -85,7 +85,7 @@ namespace OverlayWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/OverlayWPF;component/imagewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/OverlayWPF;V1.0.0.0;component/imagewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\ImageWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
