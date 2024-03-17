@@ -3,20 +3,22 @@ ________________________________________________________________________________
 
 **How to USE it**:
 
-# [Download](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fmhrubes%2FOverlay%2Ftree%2Fmaster%2Fdownload).
+<!--# [Download](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fmhrubes%2FOverlay%2Ftree%2Fmaster%2Fdownload).
 
 When something went wrong there is another way to download: <br />
 1. click on <> Code (green button)
 2. Download ZIP & Extract
 3. Go to folder - **Overlay-master/download**
 4. Click on **setup.exe**
-you can save folder **download** where you want in your pc.
+you can save folder **download** where you want in your pc.-->
 
 Another way: <br />
 1. click on <> Code (green button)
 2. Download ZIP & Extract
 3. Go to file - **Release/net7.0-windows/**
 4. Click on **OverlayWPF.exe**
+
+*The app is unsigned, which means you'll have to bypass security warnings on Windows and macOS to open it.
 __________________________________________________________________________________________________
 **App Shortcut**:
 1. Close App when **active** - **Q**
