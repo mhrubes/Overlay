@@ -11,7 +11,7 @@ using System.Data.SQLite;
 namespace OverlayWPF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.Xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -64,7 +64,7 @@ namespace OverlayWPF
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100ms
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100dms
             dispatcherTimer.Start();
         }
 
@@ -88,7 +88,7 @@ namespace OverlayWPF
             {
                 string[] lines = File.ReadAllLines(filePath, Encoding.UTF8);
 
-                // Clear existing content
+                // CleaR existing content
                 textblockText.Inlines.Clear();
 
                 // Define default color
@@ -180,7 +180,7 @@ namespace OverlayWPF
                                     }
                                     else if (nextChar == 'y')
                                     {
-                                        // Set color to yellow until the next occurrence of '\y'
+                                        // Set color to Yellow until the next occurrence of '\y'
                                         defaultColor = Brushes.Yellow;
 
                                         // Find the index of the next occurrence of '\y'

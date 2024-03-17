@@ -76,7 +76,3 @@ C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\O
 C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\ref\OverlayWPF.dll
 C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\ImageWindow.g.cs
 C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\ImageWindow.baml
-C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\bin\Release\net7.0-windows\OverlayWPF.dll.manifest
-C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\bin\Release\net7.0-windows\OverlayWPF.application
-C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\OverlayWPF.dll.manifest
-C:\Users\User\Desktop\Overlay\OverlayWPF\OverlayWPF\obj\Release\net7.0-windows\OverlayWPF.application
