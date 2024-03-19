@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.IO;
 using System.Data.SQLite;
+using System.Windows.Controls;
 
 namespace OverlayWPF
 {
@@ -266,6 +267,26 @@ namespace OverlayWPF
             imageWindow.Show();
 
             this.Close();
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                button.Background = (Brush)FindResource("onMouseEnterBackgroundColor");
+                button.FontWeight = FontWeights.Bold;
+                button.Foreground = Brushes.White;
+            }
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                button.Background = (Brush)FindResource("onMouseLeaveBackgroundColor");
+                button.FontWeight = FontWeights.Normal;
+                button.Foreground = Brushes.Black;
+            }
         }
     }
 }

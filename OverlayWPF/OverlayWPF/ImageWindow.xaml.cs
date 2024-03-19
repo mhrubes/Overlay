@@ -28,9 +28,6 @@ namespace OverlayWPF
         {
             InitializeComponent();
 
-            widthBox.Text = this.Width.ToString();
-            heightBox.Text  = this.Height.ToString();
-
             Loaded += MainWindow_Loaded;
 
             this.Topmost = true;
@@ -45,9 +42,6 @@ namespace OverlayWPF
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            widthBox.Text = Math.Round(this.Width, 0).ToString();
-            heightBox.Text = Math.Round(this.Height, 0).ToString();
-
             if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Q))
                 this.Close();
 
@@ -85,55 +79,11 @@ namespace OverlayWPF
 
                     //this.MaxHeight = 2000;
                     //this.MaxWidth = 2000;
-
-                    widthBox.Text = this.Width.ToString();
-                    heightBox.Text = this.Height.ToString();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Error: {ex.Message}");
                 }
-            }
-        }
-
-        private void WidthBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateWindowValues("width");
-        }
-
-        private void WidthBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                UpdateWindowValues("width");
-        }
-
-        private void HeightBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateWindowValues("height");
-        }
-
-        private void HeightBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-                UpdateWindowValues("height");
-        }
-
-        private void UpdateWindowValues(string boxType)
-        {
-            if (boxType == "width")
-            {
-                if (double.TryParse(widthBox.Text, out double width))
-                    this.Width = width;
-                else
-                    MessageBox.Show("Error");
-            }
-
-            if (boxType == "height")
-            {
-                if (double.TryParse(heightBox.Text, out double height))
-                    this.Height = height;
-                else
-                    MessageBox.Show("Error");
             }
         }
 
@@ -157,6 +107,26 @@ namespace OverlayWPF
             mainWindow.Show();
 
             this.Close();
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                button.Background = (Brush)FindResource("onMouseEnterBackgroundColor");
+                button.FontWeight = FontWeights.Bold;
+                button.Foreground = Brushes.White;
+            }
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                button.Background = (Brush)FindResource("onMouseLeaveBackgroundColor");
+                button.FontWeight = FontWeights.Normal;
+                button.Foreground = Brushes.Black;
+            }
         }
     }
 }

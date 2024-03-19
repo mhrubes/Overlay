@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OverlayWPF"
         mc:Ignorable="d"
-        Title="ImageWindow" MinHeight="35" Height="35" MinWidth="350" Width="350"
+        Title="ImageWindow" MinHeight="35" Height="35" MinWidth="300" Width="300"
         AllowsTransparency="True" WindowStyle="None"
         MouseDown="Window_MouseDown" PreviewKeyDown="Window_PreviewKeyDown">
 
@@ -17,6 +17,30 @@
         <WindowChrome ResizeBorderThickness="6" CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
 
+    <Window.Resources>
+        <SolidColorBrush x:Key="onMouseEnterBackgroundColor" Color="#FF104D5D" />
+        <SolidColorBrush x:Key="onMouseLeaveBackgroundColor" Color="#FF32B0D2" />
+        
+        <ControlTemplate x:Key="ButtonTemplate"
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="0"
+                    CornerRadius="7 0 7 0">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+                         Value="False">
+                    <Setter Property="Background" Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground" Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -25,42 +49,29 @@
 
         <Grid Height="35">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Slider x:Name="slider" Grid.Column="0" Width="40" Margin="5" Value="1" Minimum="0.2" Maximum="1" 
+            <Slider x:Name="slider" Grid.Column="0" MaxWidth="150" Margin="5" Value="1" Minimum="0.2" Maximum="1"
                     VerticalAlignment="Center"/>
 
-            <Label Grid.Column="1" Content="Width" Foreground="White" FontSize="7"
-                   VerticalAlignment="Bottom" HorizontalAlignment="Left"
-                   Opacity="{Binding ElementName=slider, Path=Value}"></Label>
+            <Button Grid.Column="1" Content="Text Window" Click="Change_Window_Click" MinWidth="80" Width="auto" Height="25" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
 
-            <TextBox Grid.Column="1" Name="widthBox" Width="40" Height="15" Margin="3"
-                   VerticalAlignment="Top" HorizontalAlignment="Left"
-                     Opacity="{Binding ElementName=slider, Path=Value}"
-                     LostFocus="WidthBox_LostFocus"
-                     KeyDown="WidthBox_KeyDown"></TextBox>
-
-            <Label Grid.Column="1" Content="Height" Foreground="White" FontSize="7"
-                   VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                   Opacity="{Binding ElementName=slider, Path=Value}"></Label>
-
-            <TextBox Grid.Column="1" Name="heightBox" Width="40" Height="15" Margin="3"
-                   VerticalAlignment="Top" HorizontalAlignment="Right"
-                     Opacity="{Binding ElementName=slider, Path=Value}"
-                     LostFocus="HeightBox_LostFocus"
-                     KeyDown="HeightBox_KeyDown"></TextBox>
-
-            <Button Grid.Column="2" Content="Text Window" Click="Change_Window_Click" Width="100" Height="26" 
-                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
-                    Opacity="{Binding ElementName=slider, Path=Value}"/>
-
-            <Button Grid.Column="3" Content="Select Image" Click="Image_Button_Click" Width="100" Height="26" 
-                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
-                    Opacity="{Binding ElementName=slider, Path=Value}"/>
+            <Button Grid.Column="3" Content="Select Image" Click="Image_Button_Click" MinWidth="80" Width="auto" Height="25" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
         </Grid>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
