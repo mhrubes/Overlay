@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OverlayWPF"
         mc:Ignorable="d"
-        Title="ImageWindow" MinHeight="35" Height="35" MinWidth="300" Width="300"
+        Title="ImageWindow" MinHeight="35" Height="35" MinWidth="300" Width="350"
+        Left="50" Top="50"
         AllowsTransparency="True" WindowStyle="None"
         MouseDown="Window_MouseDown" PreviewKeyDown="Window_PreviewKeyDown">
 
@@ -32,7 +33,7 @@
             </Border>
 
             <ControlTemplate.Triggers>
-                <Trigger Property="IsEnabled"  
+                <Trigger Property="IsEnabled"
                          Value="False">
                     <Setter Property="Background" Value="{x:Static SystemColors.ControlLightBrush}" />
                     <Setter Property="Foreground" Value="{x:Static SystemColors.GrayTextBrush}" />
@@ -49,12 +50,13 @@
 
         <Grid Height="35">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
 
-            <Slider x:Name="slider" Grid.Column="0" MaxWidth="150" Margin="5" Value="1" Minimum="0.2" Maximum="1"
+            <Slider x:Name="slider" Grid.Column="0" Margin="5" Value="1" Minimum="0.2" Maximum="1"
                     VerticalAlignment="Center"/>
 
             <Button Grid.Column="1" Content="Text Window" Click="Change_Window_Click" MinWidth="80" Width="auto" Height="25" 
@@ -65,18 +67,27 @@
                     Background="{StaticResource onMouseLeaveBackgroundColor}"
                     MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
 
-            <Button Grid.Column="3" Content="Select Image" Click="Image_Button_Click" MinWidth="80" Width="auto" Height="25" 
+            <Button Grid.Column="2" Content="Select Image" Click="Image_Button_Click" MinWidth="80" Width="auto" Height="25" 
                     VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"
                     Opacity="{Binding ElementName=slider, Path=Value}"
                     BorderThickness="0" Foreground="Black"
                     Template="{StaticResource ButtonTemplate}"
                     Background="{StaticResource onMouseLeaveBackgroundColor}"
                     MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+            <Button Grid.Column="3" Content="X" Click="Close_App_Click" Width="15" Height="15"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
         </Grid>
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
                       Opacity="{Binding ElementName=slider, Path=Value}">
-            <Image Grid.Row="1" Name="imageControl" Margin="0" Height="auto" Width="auto" Opacity="1"/>
+            <Image Grid.Row="1" Name="imageControl" Margin="0" Height="auto" Width="auto" Opacity="1" IsHitTestVisible="False"/>
         </ScrollViewer>
     </Grid>
 </Window>

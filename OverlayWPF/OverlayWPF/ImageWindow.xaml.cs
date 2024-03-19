@@ -128,5 +128,8 @@ namespace OverlayWPF
                 button.Foreground = Brushes.Black;
             }
         }
+
+        private void Close_App_Click(object sender, RoutedEventArgs e) => this.Close();
+
     }
 }

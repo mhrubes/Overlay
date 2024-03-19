@@ -1,0 +1,141 @@
+﻿<Window x:Class="OverlayWPF.SettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OverlayWPF"
+        mc:Ignorable="d"
+        Title="Setting" Height="150" MinWidth="100" Width="250"
+        Left="70" Top="70"
+        AllowsTransparency="True" WindowStyle="None"
+        MouseDown="Window_MouseDown" KeyDown="Window_KeyDown">
+
+    <Window.Background>
+        <SolidColorBrush Color="#FF363131"/>
+    </Window.Background>
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="onMouseEnterBackgroundColor" Color="#FF104D5D" />
+        <SolidColorBrush x:Key="onMouseLeaveBackgroundColor" Color="#FF32B0D2" />
+
+        <ControlTemplate x:Key="ButtonTemplate"
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="0"
+                    CornerRadius="7 0 7 0">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+                         Value="False">
+                    <Setter Property="Background" Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground" Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="2" Content="X" Click="Close_App_Click" Width="15" Height="15"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center" HorizontalAlignment="Right" Margin="3"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" 
+                   Text="Close App when Active" FontSize="10" TextWrapping="Wrap" Foreground="White" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Name="When_Active_Block"
+                   Text="Q" FontSize="10" TextWrapping="Wrap" Foreground="White" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3"/>
+
+        <Button Name="When_Active_Button" Content="change" Click="When_Active_Button_Click"
+                Grid.Row="1" Grid.Column="2" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" 
+                   Text="Close App when not Active" FontSize="10" TextWrapping="Wrap" Foreground="White" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Name="When_Not_Active_Block"
+                   Text="Alt + Q" FontSize="10" TextWrapping="Wrap" Foreground="White" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3"/>
+
+        <Button Name="When_Not_Active_Button" Content="change" Click="When_Not_Active_Button_Click"
+                Grid.Row="2" Grid.Column="2" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" 
+                   Text="Hide / Show App" FontSize="10" TextWrapping="Wrap" Foreground="White" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Name="Show_Hide_Block"
+                   Text="Alt + H" FontSize="10" TextWrapping="Wrap" Foreground="White" FontWeight="Bold"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3"/>
+
+        <Button Name="Show_Hide_Button" Content="change" Click="Show_Hide_Button_Click"
+                Grid.Row="3" Grid.Column="2" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+        <Button Name="Save_Button" Content="Save" Click="Save_Button_Click"
+                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="Reset_Button" Content="Reset" Click="Reset_Button_Click"
+                Grid.Column="0" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+            <Button Name="Back_Button" Content="Back"
+                Grid.Column="1" Margin="3" Height="20" Width="auto"
+                Template="{StaticResource ButtonTemplate}"
+                Background="{StaticResource onMouseLeaveBackgroundColor}"
+                Opacity="{Binding ElementName=slider, Path=Value}"
+                MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+        </Grid>
+
+    </Grid>
+</Window>

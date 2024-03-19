@@ -31,7 +31,7 @@ namespace OverlayWPF
 
             this.InputBindings.Add(quitInputBinding);
 
-            connection = new SQLiteConnection("Data Source=MyDatabase.sqlite;Version=3;");
+            connection = new SQLiteConnection("Data Source=WpfDatabase.sqlite;Version=3;");
             try
             {
                 connection.Open();
@@ -48,9 +48,7 @@ namespace OverlayWPF
                     this.Height = 450;
                 }
                 else
-                {
                     PathName.Text = "Not Selected .txt file";
-                }
             }
             catch (Exception error)
             {
@@ -288,5 +286,7 @@ namespace OverlayWPF
                 button.Foreground = Brushes.Black;
             }
         }
+
+        private void Close_App_Click(object sender, RoutedEventArgs e) => this.Close();
     }
 }
