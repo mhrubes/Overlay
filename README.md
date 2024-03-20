@@ -38,8 +38,6 @@ The result will be: <br />
 **Full Opacity**: <br />
 ![image](https://github.com/mhrubes/Overlay/assets/54173124/ceb5b8e7-2d8f-4d36-8e9f-c1f63c960694)
 
-<br />
 **Setting Window**: <br />
-
 ![image](https://github.com/mhrubes/Overlay/assets/54173124/0b3c7986-9dc8-46ca-89fd-9c0717a90ec9)
 
