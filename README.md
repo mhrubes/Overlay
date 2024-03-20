@@ -8,15 +8,6 @@ ________________________________________________________________________________
 2. Click on **OverlayWPF.exe** <br />
 ![image](https://github.com/mhrubes/Overlay/assets/54173124/635432c6-2cda-430a-a6c7-b9bf01e15d85)
 
-<!--# [Download](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2Fmhrubes%2FOverlay%2Ftree%2Fmaster%2Fdownload).
-
-When something went wrong there is another way to download: <br />
-1. click on <> Code (green button)
-2. Download ZIP & Extract
-3. Go to folder - **Overlay-master/download**
-4. Click on **setup.exe**
-you can save folder **download** where you want in your pc.-->
-
 Another way: <br />
 1. click on <> Code (green button)
 2. Download ZIP & Extract
@@ -42,7 +33,13 @@ Today is a \bblue\b sky and \yyellow\y Sun.
 The result will be: <br />
 
 **Low Opacity**: <br />
-![image](https://github.com/mhrubes/Overlay/assets/54173124/ad29266f-1241-4946-ac67-3985497e7e85)
+![image](https://github.com/mhrubes/Overlay/assets/54173124/6a4fd5d3-750d-418d-a894-e4bf92c2fd98)
 <br />
 **Full Opacity**: <br />
-![image](https://github.com/mhrubes/Overlay/assets/54173124/2e10dc50-c87b-44f0-bd8d-79f013cdb80d)
+![image](https://github.com/mhrubes/Overlay/assets/54173124/ceb5b8e7-2d8f-4d36-8e9f-c1f63c960694)
+
+<br />
+**Setting Window**: <br />
+
+![image](https://github.com/mhrubes/Overlay/assets/54173124/0b3c7986-9dc8-46ca-89fd-9c0717a90ec9)
+
