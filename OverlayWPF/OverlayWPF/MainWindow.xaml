@@ -54,7 +54,7 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
             <Slider x:Name="slider" VerticalAlignment="Center" Margin="5" Value="0.75" Minimum="0" Maximum="1"/>
@@ -69,6 +69,15 @@
 
             <Button Grid.Column="2" Content="Select File" Click="File_Button_Click" MinWidth="90" Width="auto" Height="26" 
                     VerticalAlignment="Center" HorizontalAlignment="Center" Margin="3"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+            <Button Grid.Column="3" Content="Set" Click="Setting_Open_Click" Width="25" Height="20"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"
                     BorderThickness="0" Foreground="Black"
                     Template="{StaticResource ButtonTemplate}"
                     Background="{StaticResource onMouseLeaveBackgroundColor}"

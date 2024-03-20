@@ -90,13 +90,13 @@
       <dsig:DigestValue>6/8AKA/DiqmgvSJsR623USSMUAfAj0fzZQcPk06EaSA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="OverlayWPF.dll" size="51712">
+  <file name="OverlayWPF.dll" size="54784">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>LprCcd66fGpjBni6+ymKrXL8hWFRM5c1u1wtVAL1hwQ=</dsig:DigestValue>
+      <dsig:DigestValue>i6bPdsU681n4dydDMS3nbNqOtovrwe0EF39aXzf3GSQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="OverlayWPF.exe" size="175104">

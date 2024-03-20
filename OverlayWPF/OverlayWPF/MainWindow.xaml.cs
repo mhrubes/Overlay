@@ -8,6 +8,9 @@ using System.Windows.Media;
 using System.IO;
 using System.Data.SQLite;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OverlayWPF
 {
@@ -17,26 +20,25 @@ namespace OverlayWPF
     public partial class MainWindow : Window
     {
         public SQLiteConnection connection;
+        DatabaseManager dbManager = new DatabaseManager();
         public string FilePath;
 
-        System.Windows.Threading.DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        DispatcherTimer dispatcherTimerKeybinds = new DispatcherTimer();
+
+        Dictionary<int, string> dataKeys = new Dictionary<int, string>();
+        Keybinds keybinds = new Keybinds();
+        KeyConverter converter = new KeyConverter();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            KeyGesture quitKeyGesture = new KeyGesture(Key.Q, ModifierKeys.Alt);
-
-            InputBinding quitInputBinding = new InputBinding(ApplicationCommands.Close, quitKeyGesture);
-
-            this.InputBindings.Add(quitInputBinding);
 
             connection = new SQLiteConnection("Data Source=WpfDatabase.sqlite;Version=3;");
             try
             {
                 connection.Open();
 
-                DatabaseManager dbManager = new DatabaseManager();
                 string path = dbManager.GetFirstFilePath();
                 FilePath = path;
 
@@ -49,6 +51,18 @@ namespace OverlayWPF
                 }
                 else
                     PathName.Text = "Not Selected .txt file";
+
+                dataKeys = dbManager.GetDataFromIdMoreThanTwo();
+
+                foreach (var item in dataKeys)
+                {
+                    if (item.Key == 2)
+                        keybinds.WhenActive = (Key)converter.ConvertFromString(item.Value);
+                    else if (item.Key == 3)
+                        keybinds.WhenNotActive = (Key)converter.ConvertFromString(item.Value);
+                    else if (item.Key == 4)
+                        keybinds.HideShow = (Key)converter.ConvertFromString(item.Value);
+                }
             }
             catch (Exception error)
             {
@@ -65,14 +79,40 @@ namespace OverlayWPF
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 100); // 100dms
             dispatcherTimer.Start();
+
+            dispatcherTimerKeybinds.Tick += new EventHandler(dispatcherTimerKeybinds_Tick);
+            dispatcherTimerKeybinds.Interval = new TimeSpan(0, 0, 5); // 5s
+            dispatcherTimerKeybinds.Start();
+        }
+
+        private void dispatcherTimerKeybinds_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                dataKeys = dbManager.GetDataFromIdMoreThanTwo();
+
+                foreach (var item in dataKeys)
+                {
+                    if (item.Key == 2)
+                        keybinds.WhenActive = (Key)converter.ConvertFromString(item.Value);
+                    else if (item.Key == 3)
+                        keybinds.WhenNotActive = (Key)converter.ConvertFromString(item.Value);
+                    else if (item.Key == 4)
+                        keybinds.HideShow = (Key)converter.ConvertFromString(item.Value);
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.Q))
-                this.Close();
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(keybinds.WhenNotActive))
+                Application.Current.Shutdown();
 
-            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(Key.H))
+            if (Keyboard.IsKeyDown(Key.LeftAlt) && Keyboard.IsKeyDown(keybinds.HideShow))
             {
                 if (this.Visibility == Visibility.Visible)
                     this.Visibility = Visibility.Hidden;
@@ -247,7 +287,7 @@ namespace OverlayWPF
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Q)
+            if (e.Key == keybinds.WhenActive)
                 Application.Current.Shutdown();
         }
 
@@ -260,6 +300,7 @@ namespace OverlayWPF
         private void Change_Window_Click(object sender, RoutedEventArgs e)
         {
             dispatcherTimer.Stop();
+            dispatcherTimerKeybinds.Stop();
 
             ImageWindow imageWindow = new ImageWindow();
             imageWindow.Show();
@@ -287,6 +328,19 @@ namespace OverlayWPF
             }
         }
 
-        private void Close_App_Click(object sender, RoutedEventArgs e) => this.Close();
+        private void Close_App_Click(object sender, RoutedEventArgs e) => Application.Current.Shutdown();
+
+        private void Setting_Open_Click(object sender, RoutedEventArgs e)
+        {
+            bool isSettingWindowOpen = Application.Current.Windows.OfType<SettingWindow>().Any();
+
+            if (!isSettingWindowOpen)
+            {
+                SettingWindow settingWindow = new SettingWindow();
+                settingWindow.Show();
+            }
+            else
+                MessageBox.Show("Setting Window is already open.");
+        }
     }
 }

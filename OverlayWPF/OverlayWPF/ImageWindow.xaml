@@ -53,7 +53,7 @@
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
 
             <Slider x:Name="slider" Grid.Column="0" Margin="5" Value="1" Minimum="0.2" Maximum="1"
@@ -73,6 +73,15 @@
                     BorderThickness="0" Foreground="Black"
                     Template="{StaticResource ButtonTemplate}"
                     Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
+
+            <Button Grid.Column="3" Content="Set" Click="Setting_Open_Click" Width="25" Height="20"
+                    FontWeight="Bold"
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3"
+                    BorderThickness="0" Foreground="Black"
+                    Template="{StaticResource ButtonTemplate}"
+                    Background="{StaticResource onMouseLeaveBackgroundColor}"
+                    Opacity="{Binding ElementName=slider, Path=Value}"
                     MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
 
             <Button Grid.Column="3" Content="X" Click="Close_App_Click" Width="15" Height="15"

@@ -129,7 +129,7 @@
                 Opacity="{Binding ElementName=slider, Path=Value}"
                 MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"/>
 
-            <Button Name="Back_Button" Content="Back"
+            <Button Name="Back_Button" Content="Close" Click="Close_App_Click"
                 Grid.Column="1" Margin="3" Height="20" Width="auto"
                 Template="{StaticResource ButtonTemplate}"
                 Background="{StaticResource onMouseLeaveBackgroundColor}"

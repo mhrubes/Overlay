@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Windows;
+using System.Windows.Input;
 
 namespace OverlayWPF
 {
@@ -65,7 +66,7 @@ namespace OverlayWPF
             }
         }
 
-        public Dictionary<int, string> GetDataFromIdTwo()
+        public Dictionary<int, string> GetDataFromIdMoreThanTwo()
         {
             Dictionary<int, string> dataKeys = new Dictionary<int, string>();
 
@@ -132,6 +133,9 @@ namespace OverlayWPF
 
         public void SaveHotkeys(Dictionary<int, string> keys)
         {
+            Keybinds keybinds = new Keybinds();
+            KeyConverter converter = new KeyConverter();
+
             using (SQLiteConnection connection = new SQLiteConnection("Data Source=WpfDatabase.sqlite;Version=3;"))
             {
                 connection.Open();
@@ -142,10 +146,21 @@ namespace OverlayWPF
                     string newKeyValue = item.Value;
 
                     string updateQuery = "";
-                    if (id == 2)
+                    if (id == 2) 
+                    {
+                        keybinds.WhenActive = (Key)converter.ConvertFromString(item.Value);
                         updateQuery = "UPDATE Data SET KeyOne = @NewValue WHERE Id = @Id";
-                    else
+                    }
+                    else if (id == 3)
+                    {
+                        keybinds.WhenNotActive = (Key)converter.ConvertFromString(item.Value);
                         updateQuery = "UPDATE Data SET KeyTwo = @NewValue WHERE Id = @Id";
+                    }
+                    else if (id == 4)
+                    {
+                        keybinds.HideShow = (Key)converter.ConvertFromString(item.Value);
+                        updateQuery = "UPDATE Data SET KeyTwo = @NewValue WHERE Id = @Id";
+                    }
 
                     using (SQLiteCommand updateCommand = new SQLiteCommand(updateQuery, connection))
                     {

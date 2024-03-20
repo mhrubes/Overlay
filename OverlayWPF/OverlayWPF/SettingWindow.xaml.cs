@@ -28,9 +28,7 @@ namespace OverlayWPF
         private string buttonClick = "";
 
         KeyConverter converter = new KeyConverter();
-        private Key whenActive;
-        private Key whenNotActive;
-        private Key hideShow;
+        Keybinds keybinds = new Keybinds();
 
         public SettingWindow()
         {
@@ -42,33 +40,34 @@ namespace OverlayWPF
                 connection.Open();
 
                 DatabaseManager dbManager = new DatabaseManager();
-                dataKeys = dbManager.GetDataFromIdTwo();
+                dataKeys = dbManager.GetDataFromIdMoreThanTwo();
 
                 foreach (var item in dataKeys)
                 {
                     if (item.Key == 2)
                     {
                         When_Active_Block.Text = item.Value;
-                        whenActive = (Key)converter.ConvertFromString(item.Value);
+                        keybinds.WhenActive = (Key)converter.ConvertFromString(item.Value);
                     }
                     else if (item.Key == 3)
                     {
                         When_Not_Active_Block.Text = "Alt + " + item.Value;
-                        whenNotActive = (Key)converter.ConvertFromString(item.Value);
+                        keybinds.WhenNotActive = (Key)converter.ConvertFromString(item.Value);
 
                     }
                     else if (item.Key == 4)
                     {
                         Show_Hide_Block.Text = "Alt + " + item.Value;
-                        hideShow = (Key)converter.ConvertFromString(item.Value);
+                        keybinds.HideShow = (Key)converter.ConvertFromString(item.Value);
                     }
                 }
-
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.ToString());
             }
+
+            this.Topmost = true;
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -78,24 +77,24 @@ namespace OverlayWPF
             if (buttonClick == "when_active")
             {
                 When_Active_Block.Text = capturedKey.ToString();
-                whenActive = capturedKey;
+                keybinds.WhenActive = capturedKey;
             }
             else if (buttonClick == "when_not_active")
             {
-                if (capturedKey != hideShow)
+                if (capturedKey != keybinds.HideShow)
                 {
                     When_Not_Active_Block.Text = "Alt + " + capturedKey.ToString();
-                    whenNotActive = capturedKey;
+                    keybinds.WhenNotActive = capturedKey;
                 }
                 else
                     MessageBox.Show($"{capturedKey} is already set for another shortcut");
             }
             else if (buttonClick == "hide_show")
             {
-                if (capturedKey != whenNotActive)
+                if (capturedKey != keybinds.WhenNotActive)
                 {
                     Show_Hide_Block.Text = "Alt + " + capturedKey.ToString();
-                    hideShow = capturedKey;
+                    keybinds.HideShow = capturedKey;
                 }
                 else
                     MessageBox.Show($"{capturedKey} is already set for another shortcut");
@@ -128,9 +127,9 @@ namespace OverlayWPF
 
             try
             {
-                keys.Add(2, whenActive.ToString());
-                keys.Add(3, whenNotActive.ToString());
-                keys.Add(4, hideShow.ToString());
+                keys.Add(2, keybinds.WhenActive.ToString());
+                keys.Add(3, keybinds.WhenNotActive.ToString());
+                keys.Add(4, keybinds.HideShow.ToString());
 
                 DatabaseManager dbManager = new DatabaseManager();
                 dbManager.SaveHotkeys(keys);
@@ -150,9 +149,13 @@ namespace OverlayWPF
                 DatabaseManager dbManager = new DatabaseManager();
                 dbManager.ResetHotkeys(dataKeys);
 
-                When_Active_Block.Text = "Q";
-                When_Not_Active_Block.Text = "Alt + Q";
-                Show_Hide_Block.Text = "Alt + H";
+                keybinds.WhenActive = Key.Q;
+                keybinds.WhenNotActive = Key.Q;
+                keybinds.HideShow = Key.H;
+
+                When_Active_Block.Text = keybinds.WhenActive.ToString();
+                When_Not_Active_Block.Text = "Alt + " + keybinds.WhenNotActive.ToString();
+                Show_Hide_Block.Text = "Alt + " + keybinds.HideShow.ToString();
 
                 MessageBox.Show("Reset was successful");
             }
